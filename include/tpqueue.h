@@ -53,7 +53,7 @@ class TPQueue {
   T rmHead() {
      if (head) {
        ITEM* temp = head −> next;
-       T data = head −> value;
+       T value = head −> value;
        delete head;
        head = temp;
        return value;
