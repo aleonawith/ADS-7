@@ -43,7 +43,7 @@ class TPQueue {
        head = item;
      } else if (!t && head) {
        tail -> next = item;
-       item - >prev = tail;
+       item -> prev = tail;
        tail = item;
      } else {
        t -> prev -> next = item;
