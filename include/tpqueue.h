@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-#include <cassert>
+#include <string>
 
 template<typename T>
 class TPQueue {
@@ -14,12 +14,12 @@ class TPQueue {
   ITEM* head, * tail;
   TPQueue::ITEM* create(const T& value) {
      ITEM* item = new ITEM;
-     item->value = value;
-     item->next = nullptr;
-     item->prev = nullptr;
+     item -> value = value;
+     item -> next = nullptr;
+     item -> prev = nullptr;
      return item;
   }
-  
+
  public:
   TPQueue() {
      head = nullptr;
@@ -33,22 +33,22 @@ class TPQueue {
      ITEM* item = create(value);
      ITEM* t = head;
      while (t && t->value.prior >= value.prior)
-       t = t->next;
+       t = t -> next;
      if (!t && !head) {
        head = tail = item;
-     } else if (!t->prev) {
-       head->prev = item;
-       item->next = head;
+     } else if (!t -> prev) {
+       head -> prev = item;
+       item -> next = head;
        head = item;
      } else if (!t && head) {
-       tail->next = item;
-       item->prev = tail;
+       tail -> next = item;
+       item - >prev = tail;
        tail = item;
      } else {
-       t->prev->next = item;
-       item->prev = t->prev;
-       item->next = t;
-       t->prev = item;
+       t -> prev -> next = item;
+       item -> prev = t -> prev;
+       item -> next = t;
+       t -> prev = item;
      }
   }
   bool isEmpty() {
@@ -64,7 +64,7 @@ class TPQueue {
      }
      ITEM* t = head->next;
      if (t) {
-       t->prev = nullptr;
+       t -> prev = nullptr;
      }
      T value = head->value;
      delete head;
