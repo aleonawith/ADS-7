@@ -11,7 +11,8 @@ class TPQueue {
      ITEM* next;
      ITEM* prev;
   }
-  ITEM* head, * tail;
+  ITEM* head;
+  ITEM* tail;
   TPQueue::ITEM* create(const T& value) {
      ITEM* item = new ITEM;
      item -> value = value;
