@@ -51,18 +51,18 @@ class TPQueue {
      }
   }
   T rmHead() {
-   if (head) {
-    ITEM* temp = head−>next;
-    T data = head−>data;
-    delete head;
-    head = temp;
-    return data;
+     if (head) {
+     ITEM* temp = head− > next;
+     T data = head− > value;
+     delete head;
+     head = temp;
+     return data;
    }
   }
   T pop() {
-   if (head) {
-    rmHead();
-   }
+    if (head) {
+      rmHead();
+    }
   }
 };
 
