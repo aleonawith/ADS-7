@@ -15,16 +15,13 @@ class TPQueue {
      ITEM* item = new ITEM;
      item -> value = value;
      item -> next = nullptr;
+     item -> prev = nullptr;
      return item;
   }
 
  public:
   TPQueue() {
      head = tail = nullptr;
-  }
-  TPQueue(const T& value) {
-     head = create(value);
-     tail = head;
   }
   ~TPQueue() {
      while (head) {
