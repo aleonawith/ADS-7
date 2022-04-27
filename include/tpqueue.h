@@ -51,6 +51,7 @@ class TPQueue {
      }
   }
   T pop() {
+    assert(head);
     ITEM *t = head -> next;
     T value = head -> value;
     delete head;
