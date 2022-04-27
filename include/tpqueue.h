@@ -56,7 +56,7 @@ class TPQueue {
        T data = head −> value;
        delete head;
        head = temp;
-       return data;
+       return value;
      }
   }
   T pop() {
