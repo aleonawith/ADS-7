@@ -30,24 +30,23 @@ class TPQueue {
   void push(const T& value) {
      ITEM* t = head;
      ITEM* item = create(value);
-     while (t && t -> value.prior >= value.prior) {
-       t = t -> next;
-     }
+     while (t && t -> value.prior >= value.prior)
+         t = t -> next;
      if (!t && head) {
-       tail -> next = item;
-       item -> prev = tail;
-       tail = item;
+         tail -> next = item;
+         item -> prev = tail;
+         tail = item;
      } else if (!t && !head) {
-       head = tail = item;
+         head = tail = item;
      } else if (!t -> prev) {
-       head -> prev = item;
-       item -> next = head;
-       head = item;
+         head -> prev = item;
+         item -> next = head;
+         head = item;
      } else {
-       t -> prev -> next = item;
-       item -> prev = t->prev;
-       item -> next = t;
-       t -> prev = item;
+         t -> prev -> next = item;
+         item -> prev = t -> prev;
+         item -> next = t;
+         t -> prev = item;
      }
   }
   T pop() {
