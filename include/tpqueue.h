@@ -22,6 +22,10 @@ class TPQueue {
   TPQueue() {
      head = tail = nullptr;
   }
+  TPQueue(const T& value) {
+     head = create(value);
+     tail = head;
+  }
   ~TPQueue() {
      while (head) {
        pop();
@@ -36,12 +40,12 @@ class TPQueue {
          tail -> next = item;
          item -> prev = tail;
          tail = item;
-     } else if (!t && !head) {
-         head = tail = item;
      } else if (!t -> prev) {
          head -> prev = item;
          item -> next = head;
          head = item;
+     } else if (!t && !head) {
+         head = tail = item;
      } else {
          t -> prev -> next = item;
          item -> prev = t -> prev;
