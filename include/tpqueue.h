@@ -24,7 +24,7 @@ class TPQueue {
   }
   ~TPQueue() {
      while (head) {
-       rmHead();
+       pop();
      }
   }
   void push(const T& value) {
@@ -50,19 +50,12 @@ class TPQueue {
        t -> prev = item;
      }
   }
-  T rmHead() {
-     if (head) {
-       ITEM* temp = head −> next;
-       T value = head −> value;
-       delete head;
-       head = temp;
-       return value;
-     }
-  }
   T pop() {
-    if (head) {
-      rmHead();
-    }
+    ITEM *t = head -> next;
+    T value = head -> value;
+    delete head;
+    head = t;
+    return value;
   }
 };
 
