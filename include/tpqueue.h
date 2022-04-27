@@ -17,13 +17,14 @@ class TPQueue {
      item->next = nullptr;
      return item;
   }
+
  public:
   TPQueue() {
      head = tail = nullptr;
   }
   ~TPQueue() {
      while (head) {
-       pop();
+       rmHead();
      }
   }
   void push(const T& value) {
@@ -49,16 +50,19 @@ class TPQueue {
        t->prev = item;
      }
   }
+  T rmHead() {
+   if (head) {
+    ITEM* temp = head−>next;
+    T data = head−>data;
+    delete head;
+    head = temp;
+    return data;
+   }
+  }
   T pop() {
-     if (head && tail) {
-       ITEM* temp = head->next;
-       T value = head->value;
-       delete head;
-       head = temp;
-       return value;
-     } else {
-      throw "Empty";
-     }
+   if (head) {
+    rmHead();
+   }
   }
 };
 
