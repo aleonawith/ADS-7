@@ -5,28 +5,28 @@
 template<typename T>
 class TPQueue {
  private:
-   struct ITEM {
+  struct ITEM {
      T value;
      ITEM* next;
      ITEM* prev;
-   };
-   ITEM* head, * tail;
-   TPQueue::ITEM* create(const T& value) {
+  };
+  ITEM* head, * tail;
+  TPQueue::ITEM* create(const T& value) {
      ITEM* item = new ITEM;
      item->value = value;
      item->next = nullptr;
      return item;
-   }
+  }
  public:
-   TPQueue() {
+  TPQueue() {
      head = tail = nullptr;
-   }
-   ~TPQueue() {
+  }
+  ~TPQueue() {
      while (head) {
-       rmHead();
+       pop();
      }
-   }
-   void push(const T& value) {
+  }
+  void push(const T& value) {
      ITEM* t = head;
      ITEM* item = create(value);
      while (t && t->value.prior >= value.prior) {
@@ -48,23 +48,18 @@ class TPQueue {
        item->next = t;
        t->prev = item;
      }
-   }
-   T rmHead() {
+  }
+  T pop() {
      if (head && tail) {
        ITEM* temp = head->next;
        T value = head->value;
        delete head;
        head = temp;
        return value;
-     }
-   }
-   T pop() {
-     if (!head) {
-       throw "Empty";
      } else {
-       rmHead();
+      throw "Empty";
      }
-   }
+  }
 };
 
 struct SYM {
