@@ -18,11 +18,6 @@ class TPQueue {
      first = nullptr;
      last = nullptr;
   }
-  ~TPQueue() {
-     while (first) {
-       pop(head);
-     }
-  }
   void push(T _val) {
      ITEM* last = first;
      if (last != nullptr) {
@@ -33,22 +28,24 @@ class TPQueue {
          first = t;
        }
        while (last != nullptr) {
-         if ((last -> value.prior == t -> value.prior && (last -> next == nullptr 
+         if ((last -> value.prior == t -> value.prior &&
+           (last -> next == nullptr
            || last -> next -> value.prior < t -> value.prior)) ||
-           (last -> value.prior > t -> value.prior && 
-           ((last -> next != nullptr && last -> next -> value.prior < t -> value.prior) 
+           (last -> value.prior > t -> value.prior &&
+           ((last -> next != nullptr &&
+           last -> next -> value.prior < t -> value.prior)
            || (last -> next == nullptr)))) {
            t -> next = last -> next;
            last -> next = t;
            return;
          }
-        last = last -> next;
-       } else {
-         last = new ITEM;
-         first = last;
-         last -> value = _val;
-         last -> next = nullptr;
-       }
+       last = last -> next;
+     } else {
+       last = new ITEM;
+       first = last;
+       last -> value = _val;
+       last -> next = nullptr;
+     }
   }
   T pop() {
      ITEM* temp = first;
