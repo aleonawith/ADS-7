@@ -9,53 +9,53 @@ class TPQueue {
   struct ITEM {
      T value;
      ITEM* next;
-     ITEM* prev;
-  };
-  ITEM* head;
-  ITEM* tail;
+  }
+  ITEM* first;
+  ITEM* last;
   TPQueue::ITEM* create(const T& value) {
      ITEM* item = new ITEM;
      item -> value = value;
      item -> next = nullptr;
-     item -> prev = nullptr;
      return item;
   }
 
  public:
   TPQueue() {
-     head = nullptr;
-     tail = nullptr;
+     first = nullptr;
+     last = nullptr;
   }
   ~TPQueue() {
-     while (head)
-     pop();
+     while (first)
+       pop();
   }
-  void push(const T& value) {
-     ITEM* item = create(value);
-     ITEM* t = head;
-     while (t && t->value.prior >= value.prior)
-       t = t -> next;
-     if (!t && !head) {
-       head = tail = item;
-     } else if (!t -> prev) {
-       head -> prev = item;
-       item -> next = head;
-       head = item;
-     } else if (!t && head) {
-       tail -> next = item;
-       item -> prev = tail;
-       tail = item;
-     } else {
-       t -> prev -> next = item;
-       item -> prev = t -> prev;
-       item -> next = t;
-       t -> prev = item;
-     }
+  void push(T _val) {
+     ITEM* last = first;
+     if (last != nullptr) {
+       ITEM* t = new ITEM;
+       t -> value = _val;
+       if (first->value.prior < t -> value.prior) {
+         t -> next = last;
+         first = t;
+       }
+       while (last != nullptr) {
+         if ((last -> value.prior == t -> value.prior && (last -> next == nullptr || last -> next -> value.prior < t -> value.prior)) || 
+             (last -> value.prior > t -> value.prior && ((last -> next != nullptr && last -> next -> value.prior < t -> value.prior) || (last -> next == nullptr)))) {
+           t -> next = last -> next;
+           last -> next = t;
+           return;
+         }
+        last = last -> next;
+      } else {
+        last = new ITEM;
+        first = last;
+        las t-> value = _val;
+        last -> next = nullptr;
+      }
   }
   T pop() {
-     ITEM* t = head;
-     head = head -> next;
-     return (t -> value);
+     ITEM* temp = first;
+     first = first -> next;
+     return (temp -> value);
   }
 };
 
