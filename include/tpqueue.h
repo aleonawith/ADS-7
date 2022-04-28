@@ -15,8 +15,7 @@ ITEM* last;
 
  public:
     TPQueue() {
-      first = nullptr;
-      last = nullptr;
+      first = last = 0;
     }
     void push(T _val) {
       ITEM* tail = first;
