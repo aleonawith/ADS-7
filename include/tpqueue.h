@@ -9,15 +9,9 @@ class TPQueue {
   struct ITEM {
      T value;
      ITEM* next;
-  }
+  };
   ITEM* first;
   ITEM* last;
-  TPQueue::ITEM* create(const T& value) {
-     ITEM* item = new ITEM;
-     item -> value = value;
-     item -> next = nullptr;
-     return item;
-  }
 
  public:
   TPQueue() {
@@ -38,19 +32,22 @@ class TPQueue {
          first = t;
        }
        while (last != nullptr) {
-         if ((last -> value.prior == t -> value.prior && (last -> next == nullptr || last -> next -> value.prior < t -> value.prior)) || 
-             (last -> value.prior > t -> value.prior && ((last -> next != nullptr && last -> next -> value.prior < t -> value.prior) || (last -> next == nullptr)))) {
+         if ((last -> value.prior == t -> value.prior && (last -> next == nullptr 
+           || last -> next -> value.prior < t -> value.prior)) ||
+           (last -> value.prior > t -> value.prior && 
+           ((last -> next != nullptr && last -> next -> value.prior < t -> value.prior) 
+           || (last -> next == nullptr)))) {
            t -> next = last -> next;
            last -> next = t;
            return;
          }
         last = last -> next;
-      } else {
-        last = new ITEM;
-        first = last;
-        las t-> value = _val;
-        last -> next = nullptr;
-      }
+       } else {
+         last = new ITEM;
+         first = last;
+         last -> value = _val;
+         last -> next = nullptr;
+       }
   }
   T pop() {
      ITEM* temp = first;
