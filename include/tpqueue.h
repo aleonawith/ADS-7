@@ -19,8 +19,9 @@ class TPQueue {
      last = nullptr;
   }
   ~TPQueue() {
-     while (first)
-       pop();
+     while (first) {
+       pop(head);
+     }
   }
   void push(T _val) {
      ITEM* last = first;
