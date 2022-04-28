@@ -20,7 +20,7 @@ ITEM* last;
     }
     void push(T _val) {
       ITEM* tail = first;
-      if (tail != nullptr){
+      if (tail != nullptr) {
         ITEM* t = new ITEM;
         t -> value = _val;
         if (first->value.prior < t -> value.prior) {
