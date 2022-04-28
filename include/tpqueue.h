@@ -52,28 +52,10 @@ class TPQueue {
        t -> prev = item;
      }
   }
-  bool isEmpty() {
-     if (!head || !tail) {
-       return 1;
-     } else {
-       return 0;
-     }
-  }
   T pop() {
-    if (isEmpty() == 1) {
-       throw std::string("Empty!");
-     }
-     ITEM* t = head->next;
-     if (t) {
-       t -> prev = nullptr;
-     }
-     T value = head->value;
-     delete head;
-     head = t;
-     if (!head) {
-       tail = nullptr;
-      }
-      return value;
+     ITEM* t = head;
+     head = head -> next;
+     return (t -> value);
   }
 };
 
